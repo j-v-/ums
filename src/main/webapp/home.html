@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <link href="css/main.css" rel="stylesheet" />
+
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.5/angular.min.js"></script>
+    <script src="js/navigation.js"></script>
+
+</head>
+
+<body ng-app="myApp">
+    <nav class='navbar navbar-inverse'>
+        <div class='container'>
+            <div class="navbar-header">
+                    <h1>UMS</h1>
+            </div>
+            <div class="navbar-collapse">
+                <ul class="text-right list-inline">
+                    <li [routerLink]="['home']">
+                        <a href="#"><h3>Home | </h3></a>
+                    </li>
+                    <li [routerLink]="['user']">
+                        <a href="#!users"><h3>Users | </h3></a>
+                    </li>
+                    <li [routerLink]="['phonebook']">
+                        <a href="#!phonebook"><h3>Phonebook</h3></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+    <div class="main" ng-controller="MainController">
+        <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="block container">
+                    <div><h3>Create User</h3></div>
+                    <form class="form" ng-submit="createUser()">
+                        <div class="form-group">
+                        <label for="title">Title</label><br>
+                            <select id="title" ng-model="title">
+                                <option value="Mr">Mr</option>
+                                <option value="Mrs">Mrs</option>
+                                <option value="Miss">Miss</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                        <label for="firstname">First Name *</label><br>
+                        <input type="text" id="firstname" ng-model="firstname" required/>
+                        </div>
+
+                        <div class="form-group">
+                        <label for="lastname">Last Name *</label><br>
+                        <input type="text" id="lastname" ng-model="lastname" required/>
+                        </div>
+
+                        <div class="form-group">
+                        <label for="dob">Date of birth *</label><br>
+                            <md-input-container>
+                            <input mdInput [mdDatepickerToggle]="picker" [(ngModel)]="user.dob" id="dob">
+                                <md-datepicker-toggle mdSuffix [for]="picker"></md-datepicker-toggle>
+                                <md-datepicker #picker></md-datepicker>
+                            </md-input-container>
+                        </div>
+
+                        <div class="form-group">
+                        <label>Active </label><br>
+                            <label>
+                            <input type="radio"  ng-model="isactive" data-ng-value="true"/> Yes
+                            </label>
+
+                            <label>
+                                <input type="radio"  ng-model="isactive" data-ng-value="false"/> No
+                            </label>
+                        </div>
+
+                        <input type="submit" class="btn btn-primary" value="Create"/>
+                    </form>
+                </div>
+            </div>
+
+            <div class="col-lg-6">
+                <div class="container">
+                    <h3>Search</h3>
+                    <form class="form" ng-submit = "getUsersByLastName()">
+                        <input type="text" ng-model="lastname" placeholder="Last name"/>
+                        <input type="submit" value="Search"/>
+                    </form>
+                </div>
+
+                <div class="container">
+                    <div ng-repeat="user in usersByLastName" class="row-md-6">
+                        <p class="title">{{ title }} {{ user.firstname }} {{ user.lastname }}</p>
+                        <p class="date">{{ user.dob | date }}</p>
+                        <br>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modules -->
+    <script src="js/app.js"></script>
+
+    <!-- Controllers -->
+    <script src="js/controllers/MainController.js"></script>
+</body>
+</html>
