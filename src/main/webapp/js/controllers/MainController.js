@@ -34,8 +34,8 @@ app.controller('MainController', ['$scope', '$http', function($scope, $http) {
             });
     }
 
-    $scope.deleteUser = function () {
-        $http.get("/users/delete/" + $scope.id)
+    $scope.deleteUser = function (id) {
+        $http.get("/users/delete/" + id)
             .success(function(data) {
                 $scope.deleteUser = data;
             });
@@ -46,6 +46,10 @@ app.controller('MainController', ['$scope', '$http', function($scope, $http) {
             .success(function(data) {
                 $scope.activeusers = data;
             });
+    }
+
+    $scope.deleteItem = function (user) {
+        $scope.usersByLastName.splice($scope.usersByLastName.indexOf(user), 1);
     }
 
 }]);

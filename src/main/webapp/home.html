@@ -37,9 +37,9 @@
     <div class="main" ng-controller="MainController">
         <div class="container-fluid">
         <div class="row">
-            <div class="col-lg-6">
+            <div class="col-lg-3">
                 <div class="block container">
-                    <div><h3>Create User</h3></div>
+                    <h3>Create User</h3>
                     <form class="form" ng-submit="createUser()">
                         <div class="form-group">
                         <label for="title">Title</label><br>
@@ -85,7 +85,7 @@
                 </div>
             </div>
 
-            <div class="col-lg-6">
+            <div class="col-lg-3">
                 <div class="container">
                     <h3>Search</h3>
                     <form class="form" ng-submit = "getUsersByLastName()">
@@ -94,11 +94,15 @@
                     </form>
                 </div>
 
-                <div class="container">
-                    <div ng-repeat="user in usersByLastName" class="row-md-6">
-                        <p class="title">{{ title }} {{ user.firstname }} {{ user.lastname }}</p>
-                        <p class="date">{{ user.dob | date }}</p>
-                        <br>
+                <div class="container-fluid">
+                    <div ng-repeat="user in usersByLastName" class="row">
+                        <div class="col-lg-6">
+                            <p class="title">{{ user.title }} {{ user.firstname }} {{ user.lastname }}</p>
+                            <p class="date">{{ user.dob | date }}</p>
+                        </div>
+                        <div class="col-lg-6">
+                            <button class="btn" ng-click="deleteUser(user.id); deleteItem(user)">Delete</button>
+                        </div>
                     </div>
                 </div>
             </div>
