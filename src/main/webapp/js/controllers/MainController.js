@@ -6,12 +6,7 @@ app.controller('MainController', ['$scope', '$http', function($scope, $http) {
         });
 
     $scope.createUser = function(){
-        console.log($scope.title);
-        console.log($scope.firstname);
-        console.log($scope.lastname);
-        console.log($scope.dob);
-        console.log($scope.isactive);
-        $scope.dob = new Date();
+        //$scope.dob = new Date();
         $http({
             method : 'POST',
             url : '/users/create',

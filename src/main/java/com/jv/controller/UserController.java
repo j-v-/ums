@@ -6,6 +6,7 @@ import com.jv.entity.User;
 import com.jv.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -42,10 +43,10 @@ public class UserController {
              return new ResponseEntity<String>(HttpStatus.EXPECTATION_FAILED);
     }
 
-    @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public ResponseEntity<String> deleteUser(@PathVariable Long id) throws JsonProcessingException{
-        if(userService.delete(id))
+    public ResponseEntity<String> deleteUser(@PathVariable String id) throws JsonProcessingException{
+        if(userService.delete(Long.parseLong(id)))
             return new ResponseEntity<String>(HttpStatus.OK);
         else
             return new ResponseEntity<String>(HttpStatus.EXPECTATION_FAILED);

@@ -63,7 +63,7 @@
                         <div class="form-group">
                         <label for="dob">Date of birth *</label><br>
                             <md-input-container>
-                            <input mdInput [mdDatepickerToggle]="picker" [(ngModel)]="user.dob" id="dob">
+                            <input mdInput [mdDatepickerToggle]="picker" [(ngModel)]="user.dob" id="dob" placeholder="YYYY-MM-dd">
                                 <md-datepicker-toggle mdSuffix [for]="picker"></md-datepicker-toggle>
                                 <md-datepicker #picker></md-datepicker>
                             </md-input-container>
